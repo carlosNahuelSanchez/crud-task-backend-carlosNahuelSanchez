@@ -16,4 +16,13 @@ app.get("/tareas", async (req,res) => {
     connection.end()
 })
 
+app.post("/agregarTareas", async (req,res) => {
+    const connection = await ConnectionDataBase()
+    const {title, description, isComplete} = req.body
+    const result = await connection.query("INSERT INTO tasks (title, description, isComplete) VALUES (?,?,?)", [title, description, isComplete])
+    connection.end()
+    res.send("Tarea Agregada")
+})
+
+
 app.listen(3000, () => console.log("Server Running in port", 3000))
