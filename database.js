@@ -4,7 +4,7 @@ async function ConnectionDataBase(){
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        database: 'task_db',
+        database: 'tasks_db',
     })
     return connection
 }
