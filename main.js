@@ -16,14 +16,6 @@ app.get("/tareas", async (req,res) => {
     connection.end()
 })
 
-app.post("/tareas", async (req,res) => {
-    const connection = await ConnectionDataBase()
-    const {title, description, isComplete} = req.body
-    const result = await connection.query("INSERT INTO tasks (title, description, isComplete) VALUES (?,?,?)", [title, description, isComplete])
-    connection.end()
-    res.send("Tarea Agregada")
-})
-
 app.get("/tareas/:id", async (req,res) => {
     const connection = await ConnectionDataBase()
     const id = req.params.id
@@ -32,8 +24,22 @@ app.get("/tareas/:id", async (req,res) => {
     connection.end()
 })
 
+app.post("/tareas", async (req,res) => {
+    const connection = await ConnectionDataBase()
+    const {title, description, isComplete} = req.body
+    const result = await connection.query("INSERT INTO tasks (title, description, isComplete) VALUES (?,?,?)", [title, description, isComplete])
+    connection.end()
+    res.send("Tarea Agregada")
+})
 
-
+app.put("/tareas/:id", async(req,res)=> {
+    const connection = await ConnectionDataBase()
+    const {title, description, isComplete} = req.body
+    const id = req.params.id
+    const result = await connection.query("UPDATE `tasks` SET `title`= ? ,`description`= ? ,`isComplete`= ? WHERE id LIKE ? ", [title, description, isComplete,id])
+    connection.end()
+    res.send("Tarea Actualizada")
+})
 
 
 app.listen(3000, () => console.log("Server Running in port", 3000))
