@@ -41,5 +41,12 @@ app.put("/tareas/:id", async(req,res)=> {
     res.send("Tarea Actualizada")
 })
 
+app.delete("/tareas/:id", async (req,res) => {
+    const connection = await ConnectionDataBase()
+    const id = req.params.id
+    const result = await connection.query("DELETE FROM `tasks` WHERE id = ?", id)
+    connection.end()
+    res.send("Tarea Eliminada")
+})
 
 app.listen(3000, () => console.log("Server Running in port", 3000))
