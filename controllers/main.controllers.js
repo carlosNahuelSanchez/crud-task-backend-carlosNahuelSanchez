@@ -1,5 +1,6 @@
 const {ConnectionDataBase} = require("../src/database")
 
+//Ver todas las tareas registrados
 const verTareas = async (req,res) => {
     const connection = await ConnectionDataBase()
     const result = await connection.query("SELECT * FROM tasks")
@@ -7,6 +8,7 @@ const verTareas = async (req,res) => {
     connection.end()
 }
 
+//Ver las tareas por ID
 const verTareasId = async (req,res) => {
     const connection = await ConnectionDataBase()
     const id = req.params.id
@@ -15,6 +17,7 @@ const verTareasId = async (req,res) => {
     connection.end()
 }
 
+//Agregar tareas
 const agregarTareas = async (req,res) => {
     const connection = await ConnectionDataBase()
     const {title, description, isComplete} = req.body
@@ -34,21 +37,34 @@ const agregarTareas = async (req,res) => {
 }
 }
 
+//Actualizar Tareas
 const actualizarTareas = async (req,res) => {
     const connection = await ConnectionDataBase()
     const {title, description, isComplete} = req.body
+    if (!title || title.lenght > 255) {
+        res.send("ERROR 400 Bad Request | El título no es válido")
+    }
+    else if(!description){
+        res.send("ERROR 400 Bad Request | No existe una descripción ")
+    }
+    else if (typeof isComplete !== "boolean") {
+        res.send("ERROR 400 Bad Request | No se especifica correctamente el estado de la tarea")
+    }
+    else{
     const id = req.params.id
     const result = await connection.query("UPDATE `tasks` SET `title`= ? ,`description`= ? ,`isComplete`= ? WHERE id LIKE ? ", [title, description, isComplete,id])
     connection.end()
-    res.send("Tarea Actualizada")
+    res.send("200 OK | Tarea Actualizada")
+    }
 }
 
+//Eliminar Tareas
 const eliminarTareas = async (req,res) => {
     const connection = await ConnectionDataBase()
     const id = req.params.id
     const result = await connection.query("DELETE FROM `tasks` WHERE id = ?", id)
     connection.end()
-    res.send("Tarea Eliminada")
+    res.send("200 OK | Tarea Eliminada")
 }
 
 module.exports = {verTareas,verTareasId, agregarTareas, actualizarTareas, eliminarTareas}
