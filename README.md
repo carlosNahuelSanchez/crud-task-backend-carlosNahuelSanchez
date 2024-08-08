@@ -5,16 +5,20 @@
 ## Como usar la aplicación:
 
 ### -Clonar el repositorio en tu escritorio
-<code>git clone https://github.com/carlosNahuelSanchez/crud-task-backend-carlosNahuelSanchez.git</code>
+<code>$ git clone https://github.com/carlosNahuelSanchez/crud-task-backend-carlosNahuelSanchez.git</code>
 
 ### Moverte al directorio de la app
 
-<code> cd crud-task-backend-carlosNahuelSanchez</code>
+<code>$ cd crud-task-backend-carlosNahuelSanchez</code>
 
 ### -Instalar las dependencias
-<code>npm install</code>
+<code>$ npm install</code>
 
-### Solicita al servidor a través de ThunderLighting o Postman
+### Iniciar el servidor
+
+<code>$ npm run dev </code>
+
+### Solicita las operaciones CRUD a través de ThunderLighting o Postman
 
 #### - Ej: GET: localhost:3000/tareas 
 Esta accion mostraria todas las tareas existentes
