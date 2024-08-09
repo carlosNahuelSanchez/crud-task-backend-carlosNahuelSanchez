@@ -1,7 +1,7 @@
-const mysql = require('mysql2/promise');
+import { createConnection } from 'mysql2/promise';
 
 async function ConnectionDataBase(){
-    const connection = await mysql.createConnection({
+    const connection = await createConnection({
         host: 'localhost',
         user: 'root',
         database: 'tasks_db',
@@ -9,4 +9,4 @@ async function ConnectionDataBase(){
     return connection
 }
 
-module.exports = {ConnectionDataBase}
+export {ConnectionDataBase}

@@ -1,9 +1,8 @@
-const express = require('express');
+import express, { json } from 'express';
 const app = express()
-const {ConnectionDataBase} = require("./database");
-const { router } = require('../routers/main.routes');
+import { router } from '../routers/main.routes.js';
 
-app.use(express.json())
+app.use(json())
 app.use(router)
 
 app.get("/", (req,res) => {

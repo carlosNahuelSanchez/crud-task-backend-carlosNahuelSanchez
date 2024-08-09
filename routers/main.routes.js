@@ -1,6 +1,8 @@
-const express = require("express")
-const router = express.Router()
-const {verTareas,verTareasId, agregarTareas, actualizarTareas, eliminarTareas} = require("../controllers/main.controllers")
+import { Router } from "express"
+
+const router = Router()
+
+import { verTareas, verTareasId, agregarTareas, actualizarTareas, eliminarTareas } from "../controllers/main.controllers.js"
 
 router.get("/tareas", verTareas)
 
@@ -12,4 +14,4 @@ router.put("/tareas/:id", actualizarTareas)
 
 router.delete("/tareas/:id", eliminarTareas)
 
-module.exports = {router}
+export {router}

@@ -1,4 +1,5 @@
-const {ConnectionDataBase} = require("../src/database")
+import { ConnectionDataBase } from "../src/database.js"
+
 
 //Ver todas las tareas registrados
 const verTareas = async (req,res) => {
@@ -67,4 +68,4 @@ const eliminarTareas = async (req,res) => {
     res.send("200 OK | Tarea Eliminada")
 }
 
-module.exports = {verTareas,verTareasId, agregarTareas, actualizarTareas, eliminarTareas}
+export {verTareas,verTareasId, agregarTareas, actualizarTareas, eliminarTareas}
